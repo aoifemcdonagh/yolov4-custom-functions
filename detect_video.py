@@ -126,11 +126,11 @@ def main(_argv):
         class_names = utils.read_class_names(cfg.YOLO.CLASSES)
 
         # by default allow all classes in .names file
-        allowed_classes = list(class_names.values())
+        #allowed_classes = list(class_names.values())
         
         # custom allowed classes (uncomment line below to allow detections for only people)
-        #allowed_classes = ['person']
-
+        allowed_classes = ['person']
+        
         # if crop flag is enabled, crop each detection and save it as new image
         if FLAGS.crop:
             crop_rate = 150 # capture images every so many frames (ex. crop photos every 150 frames)
@@ -151,7 +151,7 @@ def main(_argv):
 
         if FLAGS.count:
             # count objects found
-            counted_classes = count_objects(pred_bbox, by_class = False, allowed_classes=allowed_classes)
+            counted_classes = count_objects(pred_bbox, by_class = True, allowed_classes=allowed_classes)
             # loop through dict and print
             for key, value in counted_classes.items():
                 print("Number of {}s: {}".format(key, value))
