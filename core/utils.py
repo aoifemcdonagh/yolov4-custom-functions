@@ -260,24 +260,22 @@ def draw_bbox(image, bboxes, info = False, counted_classes = None, show_label=Tr
                 cv2.putText(image, bbox_mess, (c1[0], np.float32(c1[1] - 2)), cv2.FONT_HERSHEY_SIMPLEX,
                         fontScale, (0, 0, 0), bbox_thick // 2, lineType=cv2.LINE_AA)
 
-            if counted_classes != None:
-                height_ratio = int(image_h / 25)
-                offset = 15
-                for key, value in counted_classes.items():
-                    cv2.putText(image, "{}s detected: {}".format(key, value), (5, offset),
-                            cv2.FONT_HERSHEY_COMPLEX_SMALL, 1, (0, 255, 0), 2)
-                    offset += height_ratio
-
             # Aoife's 'watermark' top right corner
             watermark_text = ['Made by Aoife McDonagh', 'Model: Yolo v4', 'Luna Systems coding challenge 1']
 
             height_ratio = int(image_h / 25)
             offset = 15
             for text in watermark_text:
-                cv2.putText(image, text, (image_w - 50, offset),
+                cv2.putText(image, text, (5, offset),
                             cv2.FONT_HERSHEY_COMPLEX_SMALL, 1, (0, 255, 0), 2)
                 offset += height_ratio
 
+            if counted_classes != None:
+                offset += 20
+                for key, value in counted_classes.items():
+                    cv2.putText(image, "{}s detected: {}".format(key, value), (5, offset),
+                            cv2.FONT_HERSHEY_COMPLEX_SMALL, 1, (0, 255, 0), 2)
+                    offset += height_ratio
 
     return image
 
