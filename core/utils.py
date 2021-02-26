@@ -267,6 +267,18 @@ def draw_bbox(image, bboxes, info = False, counted_classes = None, show_label=Tr
                     cv2.putText(image, "{}s detected: {}".format(key, value), (5, offset),
                             cv2.FONT_HERSHEY_COMPLEX_SMALL, 1, (0, 255, 0), 2)
                     offset += height_ratio
+
+            # Aoife's 'watermark' top right corner
+            watermark_text = ['Made by Aoife McDonagh', 'Model: Yolo v4', 'Luna Systems coding challenge 1']
+
+            height_ratio = int(image_h / 25)
+            offset = 15
+            for text in watermark_text:
+                cv2.putText(image, text, (image_w - 50, offset),
+                            cv2.FONT_HERSHEY_COMPLEX_SMALL, 1, (0, 255, 0), 2)
+                offset += height_ratio
+
+
     return image
 
 def bbox_iou(bboxes1, bboxes2):
